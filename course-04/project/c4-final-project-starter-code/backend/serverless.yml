@@ -18,8 +18,6 @@ provider:
   environment:
     TODOS_TABLE: Todos-${self:provider.stage}
     TODOS_CREATED_AT_INDEX: CreatedAtIndex
-    # ATTACHMENTS_TABLE: Attachments-${self:provider.stage}
-    # ATTACHMENTS_ID_INDEX: AttachmentIdIndex
     ATTACHMENTS_S3_BUCKET: todo-attachments-308078610002-${self:provider.stage}
     SIGNED_URL_EXPIRATION: 300
     AUTH_0_SECRET_ID: Auth0Secret-${self:provider.stage}
@@ -49,15 +47,6 @@ provider:
           Action:
             - kms:Decrypt
           Resource: !GetAtt KMSKey.Arn
-        # - Effect: Allow
-        #   Action:
-        #     - dynamodb:Query
-        #     - dynamodb:PutItem
-        #   Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.ATTACHMENTS_TABLE}
-        # - Effect: Allow
-        #   Action:
-        #     - dynamodb:Query
-        #   Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.ATTACHMENTS_TABLE}/index/${self:provider.environment.ATTACHMENTS_ID_INDEX}
 
 functions:
   GetTodos:
